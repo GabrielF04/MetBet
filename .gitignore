@@ -1,0 +1,7 @@
+bin
+obj
+*vs
+*..vs
+*exe
+*executavel
+appsettings.json
