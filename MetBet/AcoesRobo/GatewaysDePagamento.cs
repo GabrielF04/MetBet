@@ -22,16 +22,16 @@ namespace MetBet.AcoesRobo
             TimeSpan tenPM = input.tenPM;
             TimeSpan currentTime = input.currentTime;
 
-            IWebElement gatewayPagamento = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://devadmin.metbet.io/admin-side/payment_gateways/deposits\']")));
+            IWebElement gatewayPagamento = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://admin.metbet.io/admin-side/payment_gateways/deposits\']")));
             gatewayPagamento.Click();
 
-            IWebElement retiradas = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\"https://devadmin.metbet.io/admin-side/payment_gateways/withdrawals\"]")));
+            IWebElement retiradas = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://admin.metbet.io/admin-side/payment_gateways/withdrawals\']")));
             retiradas.Click();
 
             IWebElement betterBro = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//td[@class=\'  details-control\']")));
             betterBro.Click();
 
-            IWebElement betterBro3Pontos = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://devadmin.metbet.io/admin-side/payment_gateways/withdrawal/913\']")));
+            IWebElement betterBro3Pontos = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://admin.metbet.io/admin-side/payment_gateways/withdrawal/799\']")));
             betterBro3Pontos.Click();
 
             // PAGEDOWN
@@ -60,7 +60,7 @@ namespace MetBet.AcoesRobo
             teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
 
             // VERIFICO A HORA ATUAL PARA AJUSTAR A RETIRADA MAXIMA
-            if (currentTime >= sixAM)
+            if (currentTime >= sixAM && currentTime < tenPM)
             {
                 campoLimiteRetiradaMaximo.Clear();
                 campoLimiteRetiradaMaximo.SendKeys("5000");

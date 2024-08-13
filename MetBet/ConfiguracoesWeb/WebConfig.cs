@@ -20,14 +20,15 @@ namespace MetBet.ConfiguracoesWeb
 
             options.AddArgument("start-maximized");
 
-            string urlPainelMetBet = "https://devadmin.metbet.io/";
+            string urlPainelMetBet = "https://admin.metbet.io/";
 
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(urlPainelMetBet);
 
+            string userDocumentationPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
             var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            .AddJsonFile(@$"{userDocumentationPath}\appsettings.json", optional: false, reloadOnChange: true);
 
             IConfiguration config = builder.Build();
 

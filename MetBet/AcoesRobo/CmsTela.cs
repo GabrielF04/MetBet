@@ -24,14 +24,14 @@ namespace MetBet.AcoesRobo
             IWebElement traducao = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[contains(text(), 'Tradução')]")));
             traducao.Click();
 
-            IWebElement traducaoPlataforma = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://devadmin.metbet.io/admin-side/translate_static/list\']")));
+            IWebElement traducaoPlataforma = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://admin.metbet.io/admin-side/translate_static/list\']")));
             traducaoPlataforma.Click();
 
             // PAGEDOWN
             teclado.Keyboard.KeyPress((VirtualKeyCode)0x22);
             Thread.Sleep(1000);
 
-            IWebElement btnPtBr = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://devadmin.metbet.io/admin-side/translate_static/lang/pt-br\']")));
+            IWebElement btnPtBr = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://admin.metbet.io/admin-side/translate_static/lang/pt-br\']")));
             btnPtBr.Click();
 
             return input;

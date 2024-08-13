@@ -37,7 +37,7 @@ namespace MetBet.AcoesRobo
             IWebElement Cancelamento = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[contains(text(), 'Cancelamento')]")));
             Cancelamento.Click();
 
-            IWebElement configRetirada = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://devadmin.metbet.io/admin-side/withdrawal/setConfig\']")));
+            IWebElement configRetirada = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://admin.metbet.io/admin-side/withdrawal/setConfig\']")));
             configRetirada.Click();
 
 
@@ -46,12 +46,13 @@ namespace MetBet.AcoesRobo
             IWebElement campoRetiradaMaxima = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//input[@id=\'InputWdLimit\']")));
 
             //O ROBO VERIFICA A HORA ATUAL PARA INTERAGIR COM O SAQUE MAXIMO
-            if(currentTime >= sixAM)
+
+            if (currentTime >= sixAM && currentTime < tenPM)
             {
                 campoRetiradaMaxima.Clear();
                 campoRetiradaMaxima.SendKeys("5001");
             }
-            else if(currentTime >= tenPM)
+            else if (currentTime >= tenPM)
             {
                 campoRetiradaMaxima.Clear();
                 campoRetiradaMaxima.SendKeys("1001");

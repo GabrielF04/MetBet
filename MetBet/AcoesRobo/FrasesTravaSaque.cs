@@ -26,7 +26,7 @@ namespace MetBet.AcoesRobo
             IWebElement campoFraseSaque = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//input[@class=\'form-control translateEditor\']")));
             Thread.Sleep(1000);
             // VERIFICO A HORA ATUAL PARA INCLUIR A FRASE
-            if (currentTime >= sixAM)
+            if (currentTime >= sixAM && currentTime < tenPM)
             {
                 campoFraseSaque.Click();
                 campoFraseSaque.Clear();
