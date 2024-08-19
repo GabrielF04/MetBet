@@ -1,5 +1,6 @@
 ﻿using MetBet.AcoesRobo;
 using MetBet.ConfiguracoesWeb;
+using MetBet.Email;
 using PipeliningLibrary;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace MetBet.Pipelines
                 .Pipe<GatewaysDePagamento>()
                 .Pipe<CmsTela>()
                 .Pipe<FrasesTravaSaque>()
+                .Pipe<EnviaEmail>()
                 .Pipe<EncerroRobo>()
                 ;
         }

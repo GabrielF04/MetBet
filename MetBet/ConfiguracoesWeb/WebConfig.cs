@@ -34,6 +34,10 @@ namespace MetBet.ConfiguracoesWeb
 
             string login = config["Credentials:Login"];
             string password = config["Credentials:Password"];
+            string emailMetbet = config["Credentials:Email"];
+            string senhaEmail = config["Credentials:SenhaEmail"];
+            string emailDestinatario1 = config["Credentials:EmailDestinatario1"];
+            string emailDestinatario2 = config["Credentials:EmailDestinatario2"];
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
@@ -41,6 +45,10 @@ namespace MetBet.ConfiguracoesWeb
             input.password = password;
             input.wait = wait;
             input.driver = driver;
+            input.emailMetbet = emailMetbet;
+            input.senhaEmail = senhaEmail;
+            input.emailDestinatario1 = emailDestinatario1;
+            input.emailDestinatario2 = emailDestinatario2;
 
             return input;
         }
