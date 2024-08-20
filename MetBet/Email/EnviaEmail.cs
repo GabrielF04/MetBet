@@ -67,7 +67,7 @@ namespace MetBet.Email
                     IWebElement campoDestinatario2 = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\'docking_InitVisiblePart_0\']/div/div[3]/div[1]/div/div[3]/div/div/div[1]")));
                     campoDestinatario2.SendKeys(emailDestinatario2);
 
-                    IWebElement campoAssunto = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//input[@id=\'TextField251\']")));
+                    IWebElement campoAssunto = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//input[@placeholder=\'Adicionar um assunto\']")));
                     campoAssunto.SendKeys("O Robô Trava Saque rodou corretamente. Se possível, verifique as configurações de saque.");
 
                     IWebElement btnEnviar = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[contains(text(), 'Enviar')]")));

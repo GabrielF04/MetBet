@@ -39,7 +39,7 @@ namespace MetBet.ConfiguracoesWeb
             string emailDestinatario1 = config["Credentials:EmailDestinatario1"];
             string emailDestinatario2 = config["Credentials:EmailDestinatario2"];
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 
             input.login = login; 
             input.password = password;
