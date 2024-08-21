@@ -53,7 +53,8 @@ namespace MetBet.AcoesRobo
                 ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].value = '1000'; arguments[0].dispatchEvent(new Event('change'));", campoLimiteRetiradaMaximo);
             }
 
-            IWebElement btnSalvar = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//button[@class=\'btn btn-primary\']")));
+
+            IWebElement btnSalvar = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//button[@class='btn btn-primary' or @class='btn btn-primary btn-success']")));
             btnSalvar.Click();
             return input;
         }
