@@ -16,6 +16,7 @@ namespace MetBet.AcoesRobo
         public object Run(dynamic input)
         {
             // TELA DE GATEWAYS DE PAGAMENTOS
+            IWebDriver driver = input.driver;
             var wait = input.wait;
             var teclado = new InputSimulator();
             TimeSpan sixAM = input.sixAM;
@@ -35,45 +36,25 @@ namespace MetBet.AcoesRobo
             betterBro3Pontos.Click();
 
             // PAGEDOWN
-            teclado.Keyboard.KeyPress((VirtualKeyCode)0x22);
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
             Thread.Sleep(1000);
-            IWebElement campoLimiteRetiradaMinimo = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//td[@class=\'align-middle\']//div[@class=\'relative betLimits_input_left border\']/input")));
+            IWebElement campoLimiteRetiradaMinimo = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//td[@class='align-middle']//div[@class='relative betLimits_input_left border']/input")));
+            IWebElement campoLimiteRetiradaMaximo = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//td[@class='align-middle']//div[@class='relative betLimits_input_right border']/input")));
 
-            // CLICO NO CAMPO PRIMEIRO PARA PODER LIMPA-LO
-            //OBS: DEVO CLICAR PRIMEIRO E USAR COMANDO DE TECLADO PARA LIMPAR
-            campoLimiteRetiradaMinimo.Click();
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            campoLimiteRetiradaMinimo.SendKeys("50");
-
-            IWebElement campoLimiteRetiradaMaximo = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//td[@class=\'align-middle\']//div[@class=\'relative betLimits_input_right border\']/input")));
-
-            campoLimiteRetiradaMaximo.Click();
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.BACK);
-
-            // VERIFICO A HORA ATUAL PARA AJUSTAR A RETIRADA MAXIMA
+            // Ajuste o valor dos campos com base na hora atual
             if (currentTime >= sixAM && currentTime < tenPM)
             {
-                campoLimiteRetiradaMaximo.Clear();
-                campoLimiteRetiradaMaximo.SendKeys("5000");
+                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].value = '50'; arguments[0].dispatchEvent(new Event('change'));", campoLimiteRetiradaMinimo);
+                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].value = '5000'; arguments[0].dispatchEvent(new Event('change'));", campoLimiteRetiradaMaximo);
             }
             else if (currentTime >= tenPM)
             {
-                campoLimiteRetiradaMaximo.Clear();
-                campoLimiteRetiradaMaximo.SendKeys("1000");
+                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].value = '50'; arguments[0].dispatchEvent(new Event('change'));", campoLimiteRetiradaMinimo);
+                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].value = '1000'; arguments[0].dispatchEvent(new Event('change'));", campoLimiteRetiradaMaximo);
             }
 
-            IWebElement btnSalvar = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//button[@class=\'btn btn-primary btn-success\']")));
+            IWebElement btnSalvar = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//button[@class=\'btn btn-primary\']")));
             btnSalvar.Click();
-
             return input;
         }
     }

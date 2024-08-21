@@ -15,6 +15,7 @@ namespace MetBet.AcoesRobo
     {
         public object Run(dynamic input)
         {
+            IWebDriver driver = input.driver;
             var wait = input.wait;
             var teclado = new InputSimulator();
 
@@ -28,7 +29,8 @@ namespace MetBet.AcoesRobo
             traducaoPlataforma.Click();
 
             // PAGEDOWN
-            teclado.Keyboard.KeyPress((VirtualKeyCode)0x22);
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+
             Thread.Sleep(1000);
 
             IWebElement btnPtBr = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://admin.metbet.io/admin-side/translate_static/lang/pt-br\']")));

@@ -15,10 +15,13 @@ namespace MetBet.ConfiguracoesWeb
     {
         public object Run(dynamic input)
         {
-            IWebDriver driver = new ChromeDriver();
             ChromeOptions options = new ChromeOptions();
-
+            //options.AddArgument("--headless");
+            //options.AddArgument("--no-sandbox");
             options.AddArgument("start-maximized");
+
+            // Inicializando o driver com as opções configuradas
+            IWebDriver driver = new ChromeDriver(options);
 
             string urlPainelMetBet = "https://admin.metbet.io/";
 

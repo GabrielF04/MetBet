@@ -21,14 +21,12 @@ namespace MetBet.AcoesRobo
             TimeSpan tenPM = input.tenPM;
             TimeSpan currentTime = input.currentTime;
 
-            IWebElement btnMudarLinguagem = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//li[@class=\'pr-2 d-none-320 langSelectWrapper\']")));
+            IWebElement btnMudarLinguagem = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//li[@class='pr-2 d-none-320 langSelectWrapper']")));
             btnMudarLinguagem.Click();
 
-            // USAND0 COMNANDOS DE TECLADO, TROCO A LINGUAGEM PARA PT-BR
-            Thread.Sleep(1000);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.DOWN);
-            Thread.Sleep(1000);
-            teclado.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            // Aguarda o menu dropdown carregar e localiza a opção de idioma "Português (Brasil)"
+            IWebElement opcaoPortugues = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//li[contains(text(), 'Pt-br')]")));
+            opcaoPortugues.Click();
 
             //INTERAGINDO COM PAGAMENTOS
             IWebElement Pagamentos = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[contains(text(), 'Pagamentos')]")));
