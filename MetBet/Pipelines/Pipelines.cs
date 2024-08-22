@@ -22,7 +22,7 @@ namespace MetBet.Pipelines
             Pipeline("ExecucaoRobo")
                 .Pipe<PainelLogin>()
                 .Pipe<PaginaInicial>()
-                .Pipe<GatewaysDePagamento>()
+                //.Pipe<GatewaysDePagamento>()
                 .Pipe<CmsTela>()
                 .Pipe<FrasesTravaSaque>()
                 .Pipe<EnviaEmail>()

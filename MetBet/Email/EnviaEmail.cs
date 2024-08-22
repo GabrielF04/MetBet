@@ -13,11 +13,12 @@ namespace MetBet.Email
     {
         public object Run(dynamic input)
         {
-
+            string userDocumentationPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string emailMetbet = input.emailMetbet;
             string senhaEmail = input.senhaEmail;
             string emailDestinatario1 = input.emailDestinatario1;
             string emailDestinatario2 = input.emailDestinatario2;
+            string emailDestinatario3 = input.emailDestinatario3;
 
             var wait = input.wait;
             IWebDriver driver = input.driver;
@@ -25,6 +26,11 @@ namespace MetBet.Email
             bool clicked = false;
             int maxRetries = 5;
             string urlOutlook = "https://www.microsoft.com/pt-br/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook";
+
+            string diretorioPrint = $@"{userDocumentationPath}\TravaSaquePrints";
+            string nomeArquivoPrint = "RetiradaMaxima.png";
+
+            string caminhoCompleto = Path.Combine(diretorioPrint, nomeArquivoPrint);
 
             driver.Navigate().GoToUrl(urlOutlook);
 
@@ -53,22 +59,30 @@ namespace MetBet.Email
             {
                 try
                 {
+                    Thread.Sleep(1000);
                     // Tenta encontrar o elemento e clicar
                     IWebElement btnNovoEmail = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[contains(text(), 'Novo email')]")));
                     btnNovoEmail.Click();
 
-
                     IWebElement campoDestinatario1 = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\'docking_InitVisiblePart_0\']/div/div[3]/div[1]/div/div[3]/div/div/div[1]")));
                     campoDestinatario1.SendKeys(emailDestinatario1);
 
-                    IWebElement virgula = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\'docking_InitVisiblePart_0\']/div/div[3]/div[1]/div/div[3]/div/div/div[1]")));
-                    virgula.SendKeys(",");
+                    IWebElement virgula1 = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\'docking_InitVisiblePart_0\']/div/div[3]/div[1]/div/div[3]/div/div/div[1]")));
+                    virgula1.SendKeys(",");
 
                     IWebElement campoDestinatario2 = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\'docking_InitVisiblePart_0\']/div/div[3]/div[1]/div/div[3]/div/div/div[1]")));
                     campoDestinatario2.SendKeys(emailDestinatario2);
 
+                    IWebElement virgula2 = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\'docking_InitVisiblePart_0\']/div/div[3]/div[1]/div/div[3]/div/div/div[1]")));
+                    virgula2.SendKeys(",");
+
+                    IWebElement campoDestinatario3 = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\'docking_InitVisiblePart_0\']/div/div[3]/div[1]/div/div[3]/div/div/div[1]")));
+                    campoDestinatario3.SendKeys(emailDestinatario3);
+
                     IWebElement campoAssunto = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//input[@placeholder=\'Adicionar um assunto\']")));
                     campoAssunto.SendKeys("O Robô Trava Saque rodou corretamente. Se possível, verifique as configurações de saque.");
+
+                    Thread.Sleep(1000);
 
                     IWebElement btnEnviar = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[contains(text(), 'Enviar')]")));
                     btnEnviar.Click();

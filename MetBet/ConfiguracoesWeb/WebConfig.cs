@@ -41,6 +41,7 @@ namespace MetBet.ConfiguracoesWeb
             string senhaEmail = config["Credentials:SenhaEmail"];
             string emailDestinatario1 = config["Credentials:EmailDestinatario1"];
             string emailDestinatario2 = config["Credentials:EmailDestinatario2"];
+            string emailDestinatario3 = config["Credentials:EmailDestinatario3"];
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
 
@@ -52,6 +53,8 @@ namespace MetBet.ConfiguracoesWeb
             input.senhaEmail = senhaEmail;
             input.emailDestinatario1 = emailDestinatario1;
             input.emailDestinatario2 = emailDestinatario2;
+            input.emailDestinatario3 = emailDestinatario3;
+            input.userDocumentationPath = userDocumentationPath;
 
             return input;
         }
