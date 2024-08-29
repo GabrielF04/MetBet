@@ -25,7 +25,7 @@ namespace MetBet.Email
             int attempts = 0;
             bool clicked = false;
             int maxRetries = 5;
-            string urlOutlook = "https://www.microsoft.com/pt-br/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook";
+            string urlOutlook = "https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=159&ct=1724896707&rver=7.0.6738.0&wp=MBI_SSL&wreply=https%3a%2f%2foutlook.live.com%2fowa%2f%3fnlp%3d1%26cobrandid%3dab0455a0-8d03-46b9-b18b-df2f57b9e44c%26RpsCsrfState%3da98fda45-28ce-a3a8-4063-164197ab1381&id=292841&aadredir=1&CBCXT=out&lw=1&fl=dob%2cflname%2cwld&cobrandid=ab0455a0-8d03-46b9-b18b-df2f57b9e44c";
 
             string diretorioPrint = $@"{userDocumentationPath}\TravaSaquePrints";
             string nomeArquivoPrint = "RetiradaMaxima.png";
@@ -35,8 +35,8 @@ namespace MetBet.Email
             driver.Navigate().GoToUrl(urlOutlook);
 
 
-            IWebElement btnEntrar = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//*[contains(text(), 'Entrar')]")));
-            btnEntrar.Click();
+            //IWebElement btnEntrar = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//a[@href=\'https://go.microsoft.com/fwlink/p/?linkid=2125442\']")));
+            //btnEntrar.Click();
 
             IWebElement campoEmail = wait.Until(CustomExpectedConditions.ElementIsVisible(By.XPath("//input[@id=\'i0116\']")));
             campoEmail.SendKeys(emailMetbet);
